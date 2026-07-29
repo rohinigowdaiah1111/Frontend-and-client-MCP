@@ -498,8 +498,8 @@ This is an additive deployment target, same as Phase 9 was — not on the origin
 - [x] A message box shows Groq's generated report/email and is editable before delivery
 - [x] "Publish to Google Doc" and "Create Gmail draft" call the real MCP tools (verified against the live server; correctly surfaces `REAUTH_REQUIRED` rather than crashing when the server's OAuth session has expired)
 - [x] No send/auto-send tool is wired anywhere — Gmail delivery is strictly draft-only
-- [ ] Deployed to a live Render URL
-- [ ] Auth gate in place before showing real review data
+- [x] Deployed to a live Render URL (`frontend-and-client-mcp.onrender.com`)
+- [x] Auth gate in place before showing real review data (`webapp/auth.py`, `WEBAPP_PASSWORD`, optional)
 
 ### Maps to
 
@@ -508,6 +508,27 @@ This is an additive deployment target, same as Phase 9 was — not on the origin
 ### Success criteria unlocked
 
 - The original ask — "take raw review data, classify it, chart it, let an operator message/preview it, then push to Docs and draft an email" — is met end-to-end from a browser, without needing Cursor or the CLI.
+
+---
+
+## Phase 11 — From sample CSVs to real App Store / Play Store data
+
+**Goal:** Replace the two synthetic sample CSVs in `data/raw/` with real review data, without changing anything downstream of Phase 1 — `src/ingest/loader.py` already accepts any CSV/JSON matching `EXPORT_SCHEMA.md`, so the ingestion boundary was designed from Phase 1 onward to be swappable (public CSV/JSON in, canonical `Review` objects out).
+
+**Full design doc:** `docs/phase11/REAL_STORE_DATA.md` — three options compared (manual export, an in-app CSV upload endpoint, and official Developer API integrations for Play Store + App Store Connect), with exact field-mapping tables, credential handling, and a suggested build order. Not duplicated here — see that file for the authoritative steps.
+
+Deliberately keeps Phase 1's existing non-goal intact: **no scraping/login automation** (`docs/phase1/INGEST.md` exit criteria) — every option documented uses either a manual export or an official, authenticated Developer API, the same "public export" shape the pipeline already understands.
+
+### Status
+
+- [ ] Not yet implemented — design doc only, ready to build against
+- [ ] Option A (manual export) — no code changes needed, can be done today
+- [ ] Option B (webapp upload endpoint) — see `docs/phase11/REAL_STORE_DATA.md` §5 for the exact FastAPI endpoint + frontend panel to add
+- [ ] Option C (Play Developer API + App Store Connect API) — see §6 for field mappings and credential handling
+
+### Maps to
+
+`architecture.md` (ingestion boundary), Phase 1 (`docs/phase1/INGEST.md`) — extends it without weakening its "public exports only" exit criterion.
 
 ---
 
