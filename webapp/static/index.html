@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Review Pulse Console</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .cat-pill { cursor: pointer; user-select: none; }
+  .cat-pill.active { outline: 2px solid #1447e6; outline-offset: 1px; }
+</style>
+</head>
+<body class="h-full bg-slate-50 text-slate-900">
+
+<!-- Login gate (shown only when WEBAPP_PASSWORD is configured server-side) -->
+<div id="login-overlay" class="hidden fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center">
+  <form id="login-form" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm space-y-4">
+    <div>
+      <h2 class="text-lg font-bold">Review Pulse Console</h2>
+      <p class="text-sm text-slate-500">This tool shows real review data. Enter the shared password to continue.</p>
+    </div>
+    <input id="login-password" type="password" placeholder="Password" required
+      class="w-full rounded-md border border-slate-300 p-2 text-sm" />
+    <div id="login-error" class="text-sm text-red-600 hidden"></div>
+    <button type="submit" class="w-full bg-slate-900 text-white rounded-md py-2 text-sm font-medium hover:bg-slate-700">
+      Sign in
+    </button>
+  </form>
+</div>
+
+<header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div>
+      <h1 class="text-xl font-bold">Review Pulse Console</h1>
+      <p class="text-sm text-slate-500">Live from data/raw — App Store + Play Store reviews</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <div id="week-badge" class="text-sm text-slate-500"></div>
+      <button id="logout-btn" class="hidden text-sm text-slate-400 hover:text-slate-700">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<main id="app-main" class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+
+  <!-- Stats row -->
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <div class="text-xs text-slate-500">Total reviews</div>
+      <div id="stat-total" class="text-2xl font-bold">—</div>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <div class="text-xs text-slate-500">App Store</div>
+      <div id="stat-app" class="text-2xl font-bold">—</div>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <div class="text-xs text-slate-500">Play Store</div>
+      <div id="stat-play" class="text-2xl font-bold">—</div>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <div class="text-xs text-slate-500">Positive feedback</div>
+      <div id="stat-positive" class="text-2xl font-bold text-emerald-600">—</div>
+    </div>
+  </section>
+
+  <!-- Chart + category filter -->
+  <section class="bg-white rounded-lg border border-slate-200 p-5">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-semibold">Reviews by category</h2>
+      <button id="refresh-btn" class="text-sm px-3 py-1.5 rounded-md border border-slate-300 hover:bg-slate-100">Refresh data</button>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="h-64"><canvas id="category-chart"></canvas></div>
+      <div>
+        <div id="category-pills" class="flex flex-wrap gap-2 mb-3"></div>
+        <div id="limitation-note" class="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded p-2 hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review list -->
+  <section class="bg-white rounded-lg border border-slate-200 p-5">
+    <h2 class="font-semibold mb-3">Reviews <span id="review-count-label" class="text-slate-400 font-normal"></span></h2>
+    <div id="review-list" class="divide-y divide-slate-100 max-h-96 overflow-y-auto"></div>
+  </section>
+
+  <!-- Compose / deliver -->
+  <section class="bg-white rounded-lg border border-slate-200 p-5 space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="font-semibold">Compose &amp; deliver (Groq → Docs → Gmail draft)</h2>
+      <button id="compose-btn" class="text-sm px-4 py-2 rounded-md bg-slate-900 text-white hover:bg-slate-700">
+        Generate report + email (Groq)
+      </button>
+    </div>
+
+    <div id="compose-panel" class="hidden space-y-4">
+      <div>
+        <label class="text-xs font-medium text-slate-500">Report (Google Doc body)</label>
+        <textarea id="report-box" rows="8" class="w-full mt-1 rounded-md border border-slate-300 p-3 text-sm font-mono"></textarea>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-medium text-slate-500">Email subject</label>
+          <input id="subject-box" type="text" class="w-full mt-1 rounded-md border border-slate-300 p-2 text-sm" />
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Send draft to</label>
+          <input id="to-box" type="email" class="w-full mt-1 rounded-md border border-slate-300 p-2 text-sm" />
+        </div>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-slate-500">Message box (email body)</label>
+        <textarea id="message-box" rows="6" class="w-full mt-1 rounded-md border border-slate-300 p-3 text-sm"></textarea>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button id="publish-doc-btn" class="text-sm px-4 py-2 rounded-md border border-slate-300 hover:bg-slate-100">
+          1. Publish to Google Doc
+        </button>
+        <button id="create-draft-btn" class="text-sm px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700">
+          2. Create Gmail draft (not sent)
+        </button>
+        <span class="text-xs text-slate-400">Drafts land in your Gmail Drafts folder — nothing is auto-sent.</span>
+      </div>
+    </div>
+
+    <div id="status-log" class="text-sm space-y-1"></div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

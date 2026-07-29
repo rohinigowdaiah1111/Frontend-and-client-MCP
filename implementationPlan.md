@@ -408,7 +408,14 @@ Architecture §§4, 12–13; full Problem Statement end-to-end flow.
 - [ ] Groq used to write final report + email before Docs/Gmail delivery
 ---
 
-## Phase 9 — Review Pulse Console (Frontend)
+## Phase 9 — Review Pulse Console (Frontend) — superseded by Phase 10
+
+> **Superseded 2026-07-29.** This static, sample-data-only mockup was replaced
+> by **Phase 10 — Review Pulse Console (functional app)** below, per operator
+> feedback that a read-only preview wasn't enough: the console needed to
+> actually classify real reviews, chart them, and drive Groq/Docs/Gmail MCP
+> itself. `stitch_review_pulse_console/` is kept for reference/design tokens
+> but is no longer the deployed frontend — see `webapp/` instead.
 
 **Goal:** Give an operator a scannable, read-only web UI to monitor pipeline runs and preview Groq's output before/after it ships — without adding any new write path (no "send"/"publish" button anywhere; the pipeline itself remains the only thing that calls Docs/Gmail MCP).
 
@@ -454,6 +461,53 @@ Not on the original critical path (0 → 8) and not present in `architecture.md`
 ### Success criteria unlocked
 
 - Operators can visually inspect a run's themes/quotes/actions/report/email and MCP delivery status without reading raw `output/*.json`/`.md` files directly
+
+---
+
+## Phase 10 — Review Pulse Console (functional app)
+
+**Goal:** A real, live app — not a mockup — that classifies actual reviews, charts them, and drives the existing Phase 4b/5/6 pipeline from three buttons, while preserving the draft-only non-goal (no auto-send, ever).
+
+**Implemented as:** `webapp/` — a single FastAPI service (`webapp/app.py`) that serves both the JSON API and the static frontend (`webapp/static/`, vanilla JS + Tailwind + Chart.js via CDN, no build step, no separate CORS/deploy target). `src/adapters/mcp_client.py` is a new standalone Python MCP client (Streamable HTTP) so this backend can call the Docs/Gmail MCP server directly, the same way Cursor's built-in MCP client does, without needing Cursor at runtime.
+
+This is an additive deployment target, same as Phase 9 was — not on the original critical path (0 → 8) and not in `architecture.md`'s original scope.
+
+### What it actually does
+
+1. **Classify** (`webapp/categorize.py`): every review from `data/raw/*.csv` is tagged, on top of Phase 3's `theme_id`, as one of **Positive feedback / Payment issue / KYC issue / Onboarding issue / Statement issue / Withdrawal issue / Other** — rating ≥ 4 always wins as "positive," regardless of theme keywords, so a 5-star review that happens to mention "KYC" isn't miscounted as an issue.
+2. **Chart** — a bar chart of review counts per category (Chart.js), plus a filterable, live review list.
+3. **Message box** — "Generate report + email (Groq)" runs Phase 4b live and populates editable report/subject/body fields.
+4. **Publish to Google Doc** (`POST /api/deliver/doc`) — calls `docs_append_text` via the new MCP client (Phase 5).
+5. **Create Gmail draft** (`POST /api/deliver/draft`) — calls `gmail_create_draft` via the same MCP client (Phase 6). **This is the "send" action end-to-end, and it only ever creates a draft** — there is no send/auto-send tool wired anywhere in `webapp/`, consistent with Phase 6's non-goal and the earlier "draft then send-confirm" decision (a human still has to open Gmail and hit Send).
+
+### Tasks
+
+1. Build `webapp/data.py`: run Phase 1 (ingest) → Phase 2 (privacy) → Phase 3 (theme clustering) in memory, reusing `src/` as-is; no pipeline logic duplicated. ✅
+2. Build `webapp/categorize.py`: per-review category derivation (positive vs. per-theme issue). ✅
+3. Build `src/adapters/mcp_client.py`: standalone Streamable-HTTP MCP client (`mcp` Python SDK) so `webapp/` can call the Docs/Gmail MCP server without Cursor; handles the server's "isError=false but text starts with `Error [...]`" convention (e.g. `REAUTH_REQUIRED`) and anyio's TaskGroup exception-wrapping via `except*`. ✅
+4. Build `webapp/app.py`: `/api/dashboard`, `/api/compose` (Phase 4b), `/api/deliver/doc` (Phase 5), `/api/deliver/draft` (Phase 6, draft-only), serving the static frontend from the same process. ✅
+5. Build `webapp/static/` frontend: category chart + filterable review list + compose/deliver panel + status log. ✅
+6. Smoke-tested locally end-to-end: `/api/dashboard` (26 real reviews classified), `/api/compose` (live Groq call), `/api/deliver/doc` and `/api/deliver/draft` (correctly reach the MCP server and surface `REAUTH_REQUIRED` as a clean error when the server's Google OAuth has expired — Render free-tier ephemeral storage, see Phase 5/6 edge cases above). ✅
+7. **Not yet done** — add an auth gate (shared password or Render access control) before pointing this at real, non-sample review data. ⏳
+8. **Not yet done** — deploy `webapp/` to Render as a Web Service (see `webapp/README.md` for the exact steps); this is a long-running server, so it belongs on Render next to the MCP server, not on Vercel (which is why Phase 9's Vercel deployment doesn't carry over). ⏳
+
+### Exit criteria
+
+- [x] Real reviews from `data/raw/` are classified into the 4+ categories the operator asked for (payment/KYC/onboarding/statement/withdrawal issue, positive feedback, other)
+- [x] Categories are charted and the underlying reviews are filterable in the UI
+- [x] A message box shows Groq's generated report/email and is editable before delivery
+- [x] "Publish to Google Doc" and "Create Gmail draft" call the real MCP tools (verified against the live server; correctly surfaces `REAUTH_REQUIRED` rather than crashing when the server's OAuth session has expired)
+- [x] No send/auto-send tool is wired anywhere — Gmail delivery is strictly draft-only
+- [ ] Deployed to a live Render URL
+- [ ] Auth gate in place before showing real review data
+
+### Maps to
+
+`architecture.md` §5 (data model), §8 (DocsPort/MailPort — `src/adapters/mcp_client.py` is a new transport for these same ports), §10 (Runtime & Deployment Options). Non-goals preserved: no auto-send, no bespoke Google OAuth client (auth stays on the MCP server), no PII beyond what Phase 2 already allows through.
+
+### Success criteria unlocked
+
+- The original ask — "take raw review data, classify it, chart it, let an operator message/preview it, then push to Docs and draft an email" — is met end-to-end from a browser, without needing Cursor or the CLI.
 
 ---
 
