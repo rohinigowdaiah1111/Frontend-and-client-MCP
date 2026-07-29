@@ -60,20 +60,34 @@ async def call_mcp_tool(
     Call a single MCP tool over Streamable HTTP and return its concatenated text content.
 
     `server_url` must be the full `/mcp` endpoint (e.g. f"{MCP_SERVER_URL}/mcp").
-    Raises McpToolError on transport failure or when the tool itself reports isError.
+
+    Always raises a single, plain `McpToolError` on any failure — business-logic
+    errors (isError / "Error [...]" text), and also transport failures (timeouts,
+    connection resets, DNS errors, etc., which matter here because the MCP server
+    can be asleep on Render's free tier and take 30-60s to wake up). Everything is
+    normalized to one exception type/shape so callers never need to deal with
+    anyio's BaseExceptionGroup wrapping (streamable_http_client/ClientSession run
+    their I/O inside TaskGroups) or guess which raw exception type might leak out.
     """
-    # NOTE: streamable_http_client/ClientSession run their I/O inside anyio
-    # TaskGroups, so any exception raised anywhere in this function's body
-    # (including this one) reaches the caller wrapped in a BaseExceptionGroup.
-    # Callers must catch with `except*`, not a plain `except McpToolError`.
     headers = {"Authorization": f"Bearer {auth_token}"}
-    async with httpx2.AsyncClient(headers=headers, timeout=timeout) as http_client:
-        async with streamable_http_client(server_url, http_client=http_client) as (read, write):
-            async with ClientSession(read, write) as session:
-                await session.initialize()
-                result = await session.call_tool(tool_name, arguments)
-                texts = [block.text for block in result.content if hasattr(block, "text")]
-                text = "\n".join(texts).strip()
-                if getattr(result, "isError", False) or _looks_like_error(text):
-                    raise McpToolError(text or f"{tool_name} failed with no error detail")
-                return text
+    try:
+        async with httpx2.AsyncClient(headers=headers, timeout=timeout) as http_client:
+            async with streamable_http_client(server_url, http_client=http_client) as (read, write):
+                async with ClientSession(read, write) as session:
+                    await session.initialize()
+                    result = await session.call_tool(tool_name, arguments)
+                    texts = [block.text for block in result.content if hasattr(block, "text")]
+                    text = "\n".join(texts).strip()
+                    if getattr(result, "isError", False) or _looks_like_error(text):
+                        raise McpToolError(text or f"{tool_name} failed with no error detail")
+                    return text
+    except* McpToolError as eg:
+        raise McpToolError("; ".join(str(e) for e in flatten_exceptions(eg))) from eg
+    except* BaseException as eg:  # noqa: BLE001 — deliberately catch-all, see docstring
+        leaves = flatten_exceptions(eg)
+        detail = "; ".join(f"{type(e).__name__}: {e}" for e in leaves)
+        raise McpToolError(
+            f"Could not reach the MCP server for {tool_name} ({detail}). "
+            "If it's been idle, Render's free tier can take 30-60s to wake it up — try again shortly."
+        ) from eg
+    raise AssertionError("unreachable")  # pragma: no cover — every branch above returns or raises

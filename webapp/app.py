@@ -27,7 +27,7 @@ from fastapi import Cookie, Depends, FastAPI, HTTPException, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from src.adapters.mcp_client import McpToolError, call_mcp_tool, flatten_exceptions
+from src.adapters.mcp_client import McpToolError, call_mcp_tool
 from src.compose.delivery_gate import DeliveryBlocked, fill_doc_link, require_delivery_ready
 from src.compose.facts import load_fact_pack
 from src.compose.groq_writer import GroqWriteError, write_final_copy
@@ -159,9 +159,8 @@ async def deliver_doc(req: PublishDocRequest) -> dict[str, Any]:
             tool_name="docs_append_text",
             arguments={"documentId": doc_id, "text": body},
         )
-    except* McpToolError as eg:
-        detail = "; ".join(str(e) for e in flatten_exceptions(eg))
-        raise HTTPException(status_code=502, detail=detail) from eg
+    except McpToolError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     doc_url = f"https://docs.google.com/document/d/{doc_id}/edit"
     return {"ok": True, "url": doc_url, "server_response": result_text}
@@ -198,9 +197,8 @@ async def deliver_draft(req: CreateDraftRequest) -> dict[str, Any]:
             tool_name="gmail_create_draft",
             arguments={"to": [to_addr], "subject": subject, "body": body},
         )
-    except* McpToolError as eg:
-        detail = "; ".join(str(e) for e in flatten_exceptions(eg))
-        raise HTTPException(status_code=502, detail=detail) from eg
+    except McpToolError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     return {"ok": True, "server_response": result_text}
 
