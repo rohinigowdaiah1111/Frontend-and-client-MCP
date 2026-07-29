@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 from typing import Any
 
-SYSTEM_PROMPT = """You write stakeholder-facing weekly mobile-store review pulses.
+SYSTEM_PROMPT = """You write stakeholder-facing weekly Groww app review pulses
+(Groww is the product; reviews come from its App Store and Play Store listings).
 Hard rules:
 - Use ONLY the provided fact pack. Do not invent themes, quotes, ratings, or actions.
 - Quotes must appear EXACTLY as given (verbatim). Do not paraphrase quotes.
@@ -13,6 +14,7 @@ Hard rules:
 - Keep the REPORT at or under the stated max_words.
 - Be scannable: short sections, bullets preferred.
 - If the fact pack is empty/sparse, say so clearly; do not invent signal.
+- email_subject must start with "Weekly Groww Review Pulse".
 Respond with ONE JSON object only — no markdown fences, no text outside the JSON — with
 exactly these keys: report_markdown (a markdown-formatted string), email_subject, email_body.
 Put the literal {doc_link} placeholder inside email_body where the Google Doc URL goes.
@@ -72,7 +74,7 @@ def build_user_prompt(fact_pack: dict[str, Any], *, max_words: int, stricter: bo
         f"fact_pack JSON:\n{json.dumps(compact, separators=(',', ':'))}\n"
         "report_markdown value should use this outline (it is a string INSIDE the JSON, "
         "not your top-level response):\n"
-        "Weekly Review Pulse — {week_of}\n"
+        "Weekly Groww Review Pulse — {week_of}\n"
         "Window: ... | N reviews (AS: a, PS: p)\n"
         "Top themes\n"
         "What users said (verbatim quotes)\n"

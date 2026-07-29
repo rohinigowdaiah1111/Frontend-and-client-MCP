@@ -46,7 +46,7 @@ from webapp.data import build_dashboard
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger("webapp")
 
-app = FastAPI(title="Review Pulse Console API")
+app = FastAPI(title="Groww Review Pulse API")
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 

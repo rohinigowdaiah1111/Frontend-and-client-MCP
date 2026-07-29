@@ -29,10 +29,10 @@ sources:
 
 delivery:
   docs:
-    title_pattern: "Weekly Review Pulse — {iso_week}"
+    title_pattern: "Weekly Groww Review Pulse — {iso_week}"
   gmail:
     to: "bindiganavailerohinigowdaiah@gmail.com" # self/alias, set 2026-07-29
-    subject_pattern: "Weekly Review Pulse — {iso_week}"
+    subject_pattern: "Weekly Groww Review Pulse — {iso_week}"
     include_doc_link: true
     include_full_body: true
 
