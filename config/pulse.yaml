@@ -31,7 +31,7 @@ delivery:
   docs:
     title_pattern: "Weekly Review Pulse — {iso_week}"
   gmail:
-    to: "you@example.com" # replace with self or alias
+    to: "bindiganavailerohinigowdaiah@gmail.com" # self/alias, set 2026-07-29
     subject_pattern: "Weekly Review Pulse — {iso_week}"
     include_doc_link: true
     include_full_body: true

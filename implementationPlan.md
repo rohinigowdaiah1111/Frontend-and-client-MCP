@@ -18,6 +18,7 @@ Phase-wise plan derived from `problemStatement.md` and `architecture.md`. Each p
 | 6 | Gmail MCP Delivery | Groq final email created as Gmail draft via MCP (not sent) |
 | 7 | End-to-End Hardening | Full run, observability, empty/partial-data paths |
 | 8 | Handoff | Operator runbook + success checklist signed off |
+| 9 | Review Pulse Console (Frontend) | Static ops dashboard previewing pipeline output; deployed to Vercel |
 
 ```mermaid
 flowchart LR
@@ -407,6 +408,55 @@ Architecture §§4, 12–13; full Problem Statement end-to-end flow.
 - [ ] Groq used to write final report + email before Docs/Gmail delivery
 ---
 
+## Phase 9 — Review Pulse Console (Frontend)
+
+**Goal:** Give an operator a scannable, read-only web UI to monitor pipeline runs and preview Groq's output before/after it ships — without adding any new write path (no "send"/"publish" button anywhere; the pipeline itself remains the only thing that calls Docs/Gmail MCP).
+
+**Implemented as:** `stitch_review_pulse_console/` — 5 static HTML/Tailwind screens generated in Stitch (design tokens in `stitch_review_pulse_console/review_pulse_console/DESIGN.md`), deployable to Vercel with zero build step. Deployment procedure lives in `stitch_review_pulse_console/DEPLOYMENT.md` (not duplicated here — see that file for the authoritative steps/checklist).
+
+Not on the original critical path (0 → 8) and not present in `architecture.md`'s original scope — this is an additive ops-visibility layer on top of the already-shipped pipeline, added after Phase 8.
+
+### Screens → pipeline mapping
+
+| Screen | File | Maps to |
+|---|---|---|
+| Dashboard | `dashboard_home/code.html` | Phase 3 top themes + Phase 4b report/email word-count + Phase 5–6 delivery status pills |
+| Theme Explorer | `theme_explorer/code.html` | Phase 3 Theme Clusterer (all ≤5 themes, not just top 3) |
+| Report Preview | `report_preview/code.html` | Phase 4b Groq final report + final email + post-LLM validation badges |
+| Run History | `run_history/code.html` | Phase 7 "run metrics log" (review counts, themes, Groq model, word count, Doc/Draft IDs per run) |
+| Settings | `settings/code.html` | `config/pulse.yaml` surface + Phase 0 MCP inventory / connection health |
+
+### Tasks
+
+1. Generate the 5 screens in Stitch from a prompt derived from `architecture.md` §5 (data model) and the Phase 0–6 screens/checklists in this plan. ✅
+2. Add `vercel.json` rewrites for clean routes (`/dashboard`, `/theme-explorer`, `/report-preview`, `/run-history`, `/settings`) without renaming Stitch's generated `*/code.html` files. ✅
+3. Wire the sidebar nav in all 5 screens from placeholder `href="#"` to the real routes above, with the current page kept visually active. ✅ (25/25 nav links verified — 5 screens × 5 items each)
+4. Write `DEPLOYMENT.md` (Vercel Dashboard + CLI paths, post-deploy checklist, known limitations). ✅
+5. Confirm no secrets are embedded in any static HTML (`GROQ_API_KEY`, `MCP_AUTH_TOKEN`, Google credentials) — this is a pure frontend bundle shipped to a public CDN. ✅
+6. **Not yet done** — connect screens to real pipeline output instead of Stitch's sample data: either a Vercel serverless function reading `output/pulse-facts.json` / `pulse-latest.md` / `email-latest.json` / `groq-meta.json`, or a static JSON fetch if those artifacts get published somewhere reachable after each run. ⏳
+7. **Not yet done** — add an auth gate (Vercel password protection or equivalent) before ever pointing this at real review data, consistent with the "no PII, internal-only" posture in `architecture.md` §9. ⏳
+8. Deploy to Vercel (Dashboard import or CLI, per `DEPLOYMENT.md`) and confirm all 5 routes resolve. ⏳ pending your Vercel account action.
+
+### Exit criteria
+
+- [x] 5 screens generated, styled per a single design system (`DESIGN.md`), matching the real data shapes in `architecture.md` §5
+- [x] Sidebar navigation works end-to-end between all 5 screens (no dead `href="#"` links in the main nav)
+- [x] No secrets present anywhere in the static bundle
+- [x] Deployment steps documented and reproducible (`DEPLOYMENT.md`)
+- [ ] Deployed to a live Vercel URL
+- [ ] Connected to real pipeline output (currently sample data only)
+- [ ] Auth gate in place before showing real review data
+
+### Maps to
+
+`architecture.md` §5 (data model), §10 (Runtime & Deployment Options — this is a new, additive deployment target, not a replacement for the agent-driven/scripted runner modes already described there). No corresponding non-goal is violated: this frontend is strictly read-only and adds no send/publish capability.
+
+### Success criteria unlocked
+
+- Operators can visually inspect a run's themes/quotes/actions/report/email and MCP delivery status without reading raw `output/*.json`/`.md` files directly
+
+---
+
 ## Suggested Sequencing & Effort
 
 | Phase | Can parallelize with | Suggested focus |
@@ -421,8 +471,9 @@ Architecture §§4, 12–13; full Problem Statement end-to-end flow.
 | 6 | After 5 (needs Doc URL if linking) | 0.5 day |
 | 7 | After 5–6 | 0.5–1 day |
 | 8 | After 7 | 0.5 day |
+| 9 | Independent of 0–8; can start anytime after 4b (needs the data shapes) | 0.5–1 day (screens done; live-data wiring + auth remain) |
 
-**Critical path:** 0 → 1 → 2 → 3 → 4 → **4b (Groq)** → 5 → 6 → 7 → 8
+**Critical path:** 0 → 1 → 2 → 3 → 4 → **4b (Groq)** → 5 → 6 → 7 → 8 (Phase 9 is additive/parallel, not on this path)
 
 ---
 

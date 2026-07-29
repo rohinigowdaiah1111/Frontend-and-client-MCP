@@ -1,0 +1,431 @@
+<!DOCTYPE html><html class="h-full bg-surface dark:bg-inverse-surface antialiased" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Review Pulse Console - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#191b23",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e7e7f3",
+                        "inverse-surface": "#2e3039",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-container": "#bc4800",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#ededf9",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#191b23",
+                        "on-secondary-fixed": "#0b1c30",
+                        "outline": "#737686",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-low": "#f3f3fe",
+                        "tertiary": "#943700",
+                        "inverse-on-surface": "#f0f0fb",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-xl": "32px",
+                        "margin-mobile": "16px",
+                        "unit-md": "16px",
+                        "gutter": "24px",
+                        "unit-lg": "24px",
+                        "unit-sm": "8px",
+                        "unit-xs": "4px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "mono-sm": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-sm": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="h-full flex overflow-hidden font-body-md text-on-surface bg-surface">
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface flex-col py-unit-lg px-unit-md z-50">
+<div class="mb-8">
+<div class="flex items-center gap-3 px-2">
+<img alt="Workspace Avatar" class="w-8 h-8 rounded bg-surface-container" data-alt="A small, modern, abstract logo featuring a minimal pulse wave inside a rounded square. The design uses high-contrast corporate colors, primarily deep blue and crisp white, conveying a sense of enterprise reliability and data analytics precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJiGn5R6cb4Ta0SnO6NC3vngl4SHWq0NaJnT_kpTCT33IV3vKs94bZGqaJlGbWqDl1lz4HfeKVuVn2_BLIoY0c5nTmrobtM69AVKQXen_ZwgTssgPrQP6TR8CZJVzDQ9E4US_mLbjS_JByFNbdoyXRkUa0HGJc3ZCEnpN1CxdqgxK2qBOPiz9ga0xqNf869KQCCpPkWTIN-GJoonR2dGzvUX-Ddz2XS6SbyoIOTjlm0_nv8lIzR-Q">
+<div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface">Pulse Console</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Enterprise Analytics</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/dashboard">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+</li>
+
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/theme-explorer">
+<span class="material-symbols-outlined text-[20px]" data-icon="explore">explore</span>
+<span class="text-label-md font-label-md">Theme Explorer</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/report-preview">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="text-label-md font-label-md">Report Preview</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/run-history">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+<span class="text-label-md font-label-md">Run History</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-primary font-bold border-r-2 border-primary bg-surface-container-low transition-colors duration-200 ease-in-out" href="/settings">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings" data-weight="fill">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="pt-4 border-t border-outline-variant mt-auto">
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_circle">account_circle</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</li>
+
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:pl-64 min-w-0">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 border-b border-outline-variant bg-surface flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-unit-md h-[72px]">
+<div class="flex items-center">
+<span class="text-headline-md font-headline-md font-semibold text-primary">Review Pulse Console</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<div class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">assessment</span>
+                    26 reviews (AS: 13, PS: 13)
+                </div>
+<div class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">date_range</span>
+                    Weekly Review Pulse — 2026-W31 | 2026-05-19 → 2026-07-28
+                </div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-unit-xl">
+<div class="max-w-[1440px] mx-auto space-y-unit-xl">
+<div class="mb-8">
+<h2 class="text-display-sm font-display-sm text-on-surface mb-2">Configuration Summary</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Read-only view of current system parameters and integration health.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Section 1: Pipeline Config -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Pipeline Configuration</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant block mb-2">Time Window (Weeks)</label>
+<div class="flex items-center gap-4">
+<input class="w-full accent-primary h-1 bg-surface-variant rounded-full appearance-none cursor-not-allowed" disabled="" max="52" min="1" type="range" value="12">
+<span class="text-mono-sm font-mono-sm font-semibold bg-surface-container px-2 py-1 rounded">12</span>
+</div>
+</div>
+<div>
+<label class="text-label-md font-label-md text-on-surface-variant block mb-2">Max Words Output</label>
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded px-3 py-2 w-32 opacity-70">
+<span class="text-body-md font-body-md text-on-surface">250</span>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<label class="text-label-md font-label-md text-on-surface-variant block mb-3">Theme Labels Focus</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-label-sm font-label-sm">Quality</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface rounded-full text-label-sm font-label-sm border border-outline-variant">Performance</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface rounded-full text-label-sm font-label-sm border border-outline-variant">Reliability</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface rounded-full text-label-sm font-label-sm border border-outline-variant">UX</span>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<label class="text-label-md font-label-md text-on-surface-variant block mb-4">Pulse Counts (Positive / Neutral / Negative)</label>
+<div class="flex gap-4">
+<div class="flex-1 bg-surface-container p-4 rounded text-center">
+<span class="block text-headline-md font-headline-md text-primary">3</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mt-1 block">Positive</span>
+</div>
+<div class="flex-1 bg-surface-container p-4 rounded text-center">
+<span class="block text-headline-md font-headline-md text-secondary">3</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mt-1 block">Neutral</span>
+</div>
+<div class="flex-1 bg-surface-container p-4 rounded text-center">
+<span class="block text-headline-md font-headline-md text-error">3</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mt-1 block">Negative</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Groq Settings -->
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">memory</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Groq LLM</h3>
+</div>
+<div class="space-y-6">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-1">Active Model</span>
+<div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded px-3 py-2">
+<span class="text-mono-sm font-mono-sm text-on-surface">llama3-70b-8192</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">check_circle</span>
+</div>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-1">Temperature</span>
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[20%]"></div>
+</div>
+<span class="text-mono-sm font-mono-sm">0.2</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-4">Rate Limits Usage</span>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-mono-sm font-mono-sm mb-1">
+<span class="text-on-surface">RPM</span>
+<span class="text-on-surface-variant">45 / 300</span>
+</div>
+<div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[15%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-mono-sm font-mono-sm mb-1">
+<span class="text-on-surface">TPM</span>
+<span class="text-on-surface-variant">12.4k / 100k</span>
+</div>
+<div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-mono-sm font-mono-sm mb-1">
+<span class="text-on-surface">RPD</span>
+<span class="text-on-surface-variant">890 / 5000</span>
+</div>
+<div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[18%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Integrations Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cable</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">System Integrations</h3>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="pb-3 text-label-sm font-label-sm text-on-surface-variant font-medium">Service</th>
+<th class="pb-3 text-label-sm font-label-sm text-on-surface-variant font-medium">Status</th>
+<th class="pb-3 text-label-sm font-label-sm text-on-surface-variant font-medium">Last Sync</th>
+<th class="pb-3 text-label-sm font-label-sm text-on-surface-variant font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="group">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface">api</span>
+</div>
+<span class="text-body-md font-body-md font-medium">Groq API</span>
+</div>
+</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-primary/10 text-primary text-label-sm font-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                                Connected
+                                            </span>
+</td>
+<td class="py-4 text-mono-sm font-mono-sm text-on-surface-variant">2 mins ago</td>
+<td class="py-4 text-right">
+<button class="px-3 py-1.5 rounded border border-outline-variant text-label-sm font-label-sm text-on-surface hover:bg-surface-container-high transition-colors">Test</button>
+</td>
+</tr>
+<tr class="group">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface">description</span>
+</div>
+<span class="text-body-md font-body-md font-medium">Google Docs MCP</span>
+</div>
+</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-error/10 text-error text-label-sm font-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                                                Needs Auth
+                                            </span>
+</td>
+<td class="py-4 text-mono-sm font-mono-sm text-on-surface-variant">Failed</td>
+<td class="py-4 text-right">
+<button class="px-3 py-1.5 rounded bg-primary text-on-primary text-label-sm font-label-sm hover:bg-primary-container transition-colors">Reconnect</button>
+</td>
+</tr>
+<tr class="group">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface">mail</span>
+</div>
+<span class="text-body-md font-body-md font-medium">Gmail MCP</span>
+</div>
+</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-variant text-on-surface-variant text-label-sm font-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                                Missing
+                                            </span>
+</td>
+<td class="py-4 text-mono-sm font-mono-sm text-on-surface-variant">Never</td>
+<td class="py-4 text-right">
+<button class="px-3 py-1.5 rounded border border-outline-variant text-label-sm font-label-sm text-on-surface hover:bg-surface-container-high transition-colors">Configure</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Section 2: Delivery -->
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">send</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Delivery Routing</h3>
+</div>
+<div class="space-y-6">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-2">Output Patterns</span>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 p-3 border border-outline-variant rounded bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<div class="flex-1">
+<span class="block text-label-md font-label-md">Weekly Summary Doc</span>
+<span class="block text-mono-sm font-mono-sm text-on-surface-variant mt-0.5">/pulse_reports/2026/</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 border border-outline-variant rounded bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+<div class="flex-1">
+<span class="block text-label-md font-label-md">Exec Brief Email</span>
+<span class="block text-mono-sm font-mono-sm text-on-surface-variant mt-0.5">Template: exec_v2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-3">Default Recipients</span>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-4 h-4 rounded-full bg-secondary-container flex items-center justify-center text-[10px] text-on-secondary-container font-bold">AL</div>
+<span class="text-label-sm font-label-sm">a.lead@acme.com</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-4 h-4 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] text-on-tertiary-container font-bold">PT</div>
+<span class="text-label-sm font-label-sm">p.team@acme.com</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+
+</body></html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Report Preview - Pulse Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#eeefff",
+                      "tertiary-fixed": "#ffdbcd",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#b4c5ff",
+                      "error-container": "#ffdad6",
+                      "surface": "#faf8ff",
+                      "secondary": "#505f76",
+                      "primary-fixed": "#dbe1ff",
+                      "on-secondary-container": "#54647a",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "surface-bright": "#faf8ff",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-background": "#191b23",
+                      "on-primary-fixed": "#00174b",
+                      "surface-container-high": "#e7e7f3",
+                      "inverse-surface": "#2e3039",
+                      "surface-variant": "#e1e2ed",
+                      "on-tertiary-container": "#ffede6",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed": "#360f00",
+                      "tertiary-container": "#bc4800",
+                      "on-secondary": "#ffffff",
+                      "background": "#faf8ff",
+                      "outline-variant": "#c3c6d7",
+                      "surface-dim": "#d9d9e5",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "primary": "#004ac6",
+                      "surface-tint": "#0053db",
+                      "surface-container-highest": "#e1e2ed",
+                      "secondary-container": "#d0e1fb",
+                      "primary-container": "#2563eb",
+                      "surface-container": "#ededf9",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#d3e4fe",
+                      "on-surface": "#191b23",
+                      "on-secondary-fixed": "#0b1c30",
+                      "outline": "#737686",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "surface-container-low": "#f3f3fe",
+                      "tertiary": "#943700",
+                      "inverse-on-surface": "#f0f0fb",
+                      "on-surface-variant": "#434655",
+                      "on-secondary-fixed-variant": "#38485d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit-xl": "32px",
+                      "margin-mobile": "16px",
+                      "unit-md": "16px",
+                      "gutter": "24px",
+                      "unit-lg": "24px",
+                      "unit-sm": "8px",
+                      "unit-xs": "4px",
+                      "margin-desktop": "32px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "mono-sm": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "mono-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-sm": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-unit-lg px-unit-md z-50">
+<div class="mb-8 px-4 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface">corporate_fare</span>
+</div>
+<div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-inverse-on-surface tracking-tight">Pulse Console</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Enterprise Analytics</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="/dashboard">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="/theme-explorer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+                        Theme Explorer
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-surface-container-low transition-colors duration-200 ease-in-out text-label-md font-label-md" href="/report-preview">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+                        Report Preview
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="/run-history">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                        Run History
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="/settings">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                        Settings
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<ul class="space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+                        Profile
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+                        Theme
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-64 flex flex-col h-screen">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center w-full pr-margin-desktop py-unit-md pl-unit-xl">
+<div class="flex items-center gap-4">
+<h2 class="text-headline-md font-headline-md font-semibold text-primary dark:text-inverse-primary tracking-tight">Review Pulse Console</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden items-center gap-2">
+<!-- Search bar hidden per instructions -->
+</div>
+<div class="flex items-center gap-4">
+<span class="text-body-md font-body-md text-on-surface-variant border border-outline-variant px-3 py-1 rounded-full bg-surface-container-lowest shadow-sm">
+                        26 reviews (AS: 13, PS: 13)
+                    </span>
+<span class="text-body-md font-body-md text-on-surface-variant bg-surface-container px-3 py-1 rounded">
+                        Weekly Review Pulse — 2026-W31 | 2026-05-19 → 2026-07-28
+                    </span>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-unit-xl bg-surface-container-low flex flex-col gap-6">
+<!-- Validation & Error Banners -->
+<div class="flex flex-col gap-3">
+<div class="flex gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary-container/10 text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        No PII ✓
+                    </div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary-container/10 text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Quotes verbatim ✓
+                    </div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary-container/10 text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        ≤250 words ✓
+                    </div>
+</div>
+<div class="flex items-start gap-3 p-4 rounded-lg border border-error-container bg-error-container/20 text-on-surface">
+<span class="material-symbols-outlined text-error mt-0.5">info</span>
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Docs/Gmail blocked: Groq final copy has not succeeded yet</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">The automated generation process encountered a delay. Please manually review the drafts below before proceeding.</p>
+</div>
+</div>
+</div>
+<!-- Split Screen Preview -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-0">
+<!-- Google Doc Preview -->
+<div class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1">
+<div class="border-b border-outline-variant bg-surface-container px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-label-md font-label-md font-semibold text-on-surface">Google Doc Preview</span>
+</div>
+<div class="p-6 overflow-y-auto flex-1 font-body-lg">
+<h1 class="text-display-sm font-display-sm mb-6 text-on-surface">Weekly Review Pulse: 2026-W31</h1>
+<div class="space-y-6">
+<section>
+<h2 class="text-headline-sm font-headline-sm text-primary mb-3">Key Themes</h2>
+<ul class="list-disc pl-5 space-y-2 text-on-surface-variant">
+<li class="">Integration friction with third-party auth providers remains a top concern (12 mentions).</li>
+<li class="">Positive reception of the new dashboard UI layout (8 mentions).</li>
+<li class="">Requests for more granular export options in reports (5 mentions).</li>
+</ul>
+</section>
+<section>
+<h2 class="text-headline-sm font-headline-sm text-primary mb-3">Verbatim Quotes</h2>
+<div class="space-y-4">
+<blockquote class="border-l-4 border-outline-variant pl-4 italic text-on-surface-variant">
+                                        "The new dashboard is clean, but trying to hook up SAML took our admin three days."
+                                    </blockquote>
+<blockquote class="border-l-4 border-outline-variant pl-4 italic text-on-surface-variant">
+                                        "Need CSV exports that don't aggregate the daily metrics into weekly buckets automatically."
+                                    </blockquote>
+</div>
+</section>
+<section>
+<h2 class="text-headline-sm font-headline-sm text-primary mb-3">Next Steps</h2>
+<ul class="list-disc pl-5 space-y-2 text-on-surface-variant">
+<li class="">Engineering to review SAML setup documentation.</li>
+<li class="">Product to evaluate un-aggregated CSV export feature request for Q3.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<!-- Gmail Preview -->
+<div class="flex flex-col bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1">
+<div class="border-b border-outline-variant bg-surface-container px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-error">mail</span>
+<span class="text-label-md font-label-md font-semibold text-on-surface">Gmail Preview</span>
+</div>
+<div class="border-b border-outline-variant px-6 py-4 flex flex-col gap-2 bg-surface">
+<div class="flex items-center gap-4">
+<span class="text-label-md font-label-md text-on-surface-variant w-16">To:</span>
+<span class="text-body-md font-body-md text-on-surface">leadership-team@company.com</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-md font-label-md text-on-surface-variant w-16">Subject:</span>
+<span class="text-body-md font-body-md font-semibold text-on-surface">Weekly Review Pulse [2026-W31]</span>
+</div>
+</div>
+<div class="p-6 overflow-y-auto flex-1 font-body-md text-on-surface-variant whitespace-pre-wrap">Team,
+
+Here is the weekly review pulse for W31. 
+
+We analyzed 26 reviews this week. The major highlight is the positive reception of the new UI, though integration friction (specifically SAML) is causing headaches for admins.
+
+Please review the full synthesized document here:
+<a class="text-primary-container underline font-medium bg-primary-container/10 px-1 rounded" href="#">{doc_link}</a>
+
+Best,
+Review Pulse System</div>
+</div>
+</div>
+</main>
+</div>
+
+
+</body></html>

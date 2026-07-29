@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/dashboard_home/code.html" },
+    { "source": "/dashboard", "destination": "/dashboard_home/code.html" },
+    { "source": "/theme-explorer", "destination": "/theme_explorer/code.html" },
+    { "source": "/report-preview", "destination": "/report_preview/code.html" },
+    { "source": "/run-history", "destination": "/run_history/code.html" },
+    { "source": "/settings", "destination": "/settings/code.html" }
+  ]
+}

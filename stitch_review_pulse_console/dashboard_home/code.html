@@ -1,0 +1,382 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Review Pulse Console - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#191b23",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e7e7f3",
+                        "inverse-surface": "#2e3039",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-container": "#bc4800",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#ededf9",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#191b23",
+                        "on-secondary-fixed": "#0b1c30",
+                        "outline": "#737686",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-low": "#f3f3fe",
+                        "tertiary": "#943700",
+                        "inverse-on-surface": "#f0f0fb",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-xl": "32px",
+                        "margin-mobile": "16px",
+                        "unit-md": "16px",
+                        "gutter": "24px",
+                        "unit-lg": "24px",
+                        "unit-sm": "8px",
+                        "unit-xs": "4px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "mono-sm": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-sm": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md">
+<!-- SideNavBar -->
+<aside class="bg-surface h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-unit-lg px-unit-md z-50">
+<div class="mb-unit-xl">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface">Pulse Console</h1>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Enterprise Analytics</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-high hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="/dashboard">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/theme-explorer">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-label-md font-label-md">Theme Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/report-preview">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Report Preview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/run-history">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-md font-label-md">Run History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="/settings">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dark_mode</span>
+<span class="text-label-md font-label-md">Theme</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant flex justify-between items-center w-full px-margin-desktop py-unit-md">
+<div class="flex items-center gap-4">
+<h2 class="text-headline-md font-headline-md font-semibold text-primary">Review Pulse Console</h2>
+</div>
+<div class="flex items-center gap-4 text-body-md font-body-md text-on-surface-variant">
+<span class="px-3 py-1 bg-surface-container rounded-full text-label-sm font-label-sm font-medium text-on-surface">26 reviews (AS: 13, PS: 13)</span>
+<span class="">Weekly Review Pulse — 2026-W31 | 2026-05-19 → 2026-07-28</span>
+</div>
+</header>
+<!-- Dashboard Content Canvas -->
+<div class="flex-1 p-unit-xl max-w-container-max mx-auto w-full">
+<!-- Context & Status Strip -->
+<div class="flex justify-between items-center mb-unit-lg">
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-surface-container-high rounded text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                        128 / 250 words
+                    </span>
+</div>
+<div class="flex gap-2">
+<a class="flex items-center gap-1 px-3 py-1.5 bg-surface-container rounded-lg border border-outline-variant hover:bg-surface-container-highest transition-colors text-label-sm font-label-sm text-primary font-medium" href="#">
+                        Google Doc: Published
+                        <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+<div class="group relative flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-label-sm font-label-sm text-on-surface-variant opacity-75 cursor-not-allowed">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                        Gmail Draft: Created
+                        <!-- Tooltip -->
+<div class="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-inverse-surface text-inverse-on-surface text-xs rounded whitespace-nowrap z-10">
+                            Blocked — pending Groq
+                        </div>
+</div>
+</div>
+</div>
+<!-- Theme Cards Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-unit-lg">
+<!-- Card 1: KYC -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-md hover:border-outline transition-colors relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">KYC</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Critical Volume</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-sm font-display-sm text-on-surface">12</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Reviews</span>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-surface-container-high pt-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-lg font-body-lg font-medium text-error">1.8</span>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined">trending_down</span>
+<span class="text-label-sm font-label-sm">Declining</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Withdrawals -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-md hover:border-outline transition-colors relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Withdrawals</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Elevated Friction</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-sm font-display-sm text-on-surface">8</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Reviews</span>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-surface-container-high pt-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="text-body-lg font-body-lg font-medium text-tertiary">2.5</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">trending_flat</span>
+<span class="text-label-sm font-label-sm">Stable</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Payments -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-md hover:border-outline transition-colors relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Payments</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Healthy</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-display-sm font-display-sm text-on-surface">6</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Reviews</span>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-surface-container-high pt-4 mt-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-lg font-body-lg font-medium text-primary">4.2</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-label-sm font-label-sm">Improving</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Lower Section: Quotes & Checklist -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- What users said -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg flex flex-col">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">forum</span>
+                        What users said
+                    </h3>
+<div class="space-y-4 flex-1">
+<!-- Quote 1 -->
+<div class="p-4 bg-surface rounded-lg border border-surface-variant relative pl-10">
+<span class="material-symbols-outlined absolute left-3 top-4 text-surface-dim text-opacity-50 text-[32px] transform -scale-x-100">format_quote</span>
+<p class="text-body-md font-body-md text-on-surface mb-3 relative z-10 italic">"Been stuck on the ID verification screen for 3 days. Support isn't helping. Literally can't use the app."</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded text-label-sm font-label-sm">KYC</span>
+<span class="material-symbols-outlined text-error text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">file_download</span> App Store
+                                </span>
+</div>
+</div>
+<!-- Quote 2 -->
+<div class="p-4 bg-surface rounded-lg border border-surface-variant relative pl-10">
+<span class="material-symbols-outlined absolute left-3 top-4 text-surface-dim text-opacity-50 text-[32px] transform -scale-x-100">format_quote</span>
+<p class="text-body-md font-body-md text-on-surface mb-3 relative z-10 italic">"Why does it take so long to pull my money out? Used to be instant, now it's pending forever."</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container rounded text-label-sm font-label-sm">Withdrawals</span>
+<span class="flex text-tertiary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">android</span> Play Store
+                                </span>
+</div>
+</div>
+<!-- Quote 3 -->
+<div class="p-4 bg-surface rounded-lg border border-surface-variant relative pl-10">
+<span class="material-symbols-outlined absolute left-3 top-4 text-surface-dim text-opacity-50 text-[32px] transform -scale-x-100">format_quote</span>
+<p class="text-body-md font-body-md text-on-surface mb-3 relative z-10 italic">"Adding my new card was super smooth. Good update."</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container rounded text-label-sm font-label-sm">Payments</span>
+<span class="flex text-primary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">file_download</span> App Store
+                                </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Suggested Next Steps -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-unit-lg flex flex-col">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+                        Suggested next steps
+                    </h3>
+<div class="space-y-3">
+<!-- Step 1 -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="mt-0.5">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox">
+</div>
+<div class="flex-1">
+<p class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Investigate sudden spike in ID verification failures (specifically Android version 4.2.1).</p>
+<div class="mt-2 flex gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded text-label-sm font-label-sm">KYC</span>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded text-label-sm font-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">bug_report</span> Bug</span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="mt-0.5">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox">
+</div>
+<div class="flex-1">
+<p class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Review pending withdrawal queue latency metrics from last 48 hours.</p>
+<div class="mt-2 flex gap-2">
+<span class="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container rounded text-label-sm font-label-sm">Withdrawals</span>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded text-label-sm font-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">monitoring</span> Infra</span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="mt-0.5">
+<input class="w-4 h-4 rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox">
+</div>
+<div class="flex-1">
+<p class="text-body-md font-body-md text-on-surface group-hover:text-primary transition-colors">Draft response template for positive payment experience feedback.</p>
+<div class="mt-2 flex gap-2">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container rounded text-label-sm font-label-sm">Payments</span>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded text-label-sm font-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">support_agent</span> CX</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

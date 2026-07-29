@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Theme Explorer - Review Pulse Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#191b23",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e7e7f3",
+                        "inverse-surface": "#2e3039",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-container": "#bc4800",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#ededf9",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#191b23",
+                        "on-secondary-fixed": "#0b1c30",
+                        "outline": "#737686",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-low": "#f3f3fe",
+                        "tertiary": "#943700",
+                        "inverse-on-surface": "#f0f0fb",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-xl": "32px",
+                        "margin-mobile": "16px",
+                        "unit-md": "16px",
+                        "gutter": "24px",
+                        "unit-lg": "24px",
+                        "unit-sm": "8px",
+                        "unit-xs": "4px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "mono-sm": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-sm": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-unit-lg px-unit-md z-50">
+<div class="mb-8">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-inverse-on-surface">Pulse Console</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Enterprise Analytics</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+</li>
+
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-primary-fixed bg-opacity-10" href="/theme-explorer">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-label-md font-label-md">Theme Explorer</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/report-preview">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-label-md font-label-md">Report Preview</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/run-history">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-label-md font-label-md">Run History</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<ul class="flex flex-col gap-2">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+<span class="text-label-md font-label-md">Theme</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-64 min-h-screen relative">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-margin-desktop py-unit-md">
+<div class="flex items-center gap-4">
+<h2 class="text-headline-md font-headline-md font-semibold text-primary dark:text-inverse-primary">Review Pulse Console</h2>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-body-md font-body-md text-on-surface-variant">Weekly Review Pulse — 2026-W31 | 2026-05-19 → 2026-07-28</span>
+<span class="text-label-sm font-label-sm font-medium bg-primary-container text-on-primary-container px-3 py-1 rounded-full uppercase tracking-wider">26 reviews (AS: 13, PS: 13)</span>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-unit-xl flex gap-gutter max-w-[1440px] mx-auto w-full">
+<!-- Left Column: Themes -->
+<div class="flex-1 flex flex-col gap-unit-md">
+<div class="flex justify-between items-end mb-4">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Clustered Themes</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Identified narratives based on semantic similarity.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container border border-outline-variant text-on-surface px-4 py-2 rounded-DEFAULT text-label-md font-label-md hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                         </button>
+<button class="bg-surface-container border border-outline-variant text-on-surface px-4 py-2 rounded-DEFAULT text-label-md font-label-md hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">sort</span> Sort
+                         </button>
+</div>
+</div>
+<!-- Theme List -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container border-b border-outline-variant text-label-md font-label-md text-on-surface-variant">
+<tr>
+<th class="py-3 px-4 font-medium">Theme Label</th>
+<th class="py-3 px-4 font-medium">Vol</th>
+<th class="py-3 px-4 font-medium">Avg Rating</th>
+<th class="py-3 px-4 font-medium">Share %</th>
+<th class="py-3 px-4 font-medium">Severity</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md text-on-surface divide-y divide-outline-variant">
+<!-- Row 1: Active -->
+<tr class="bg-primary-fixed bg-opacity-10 cursor-pointer hover:bg-primary-fixed hover:bg-opacity-20 transition-colors">
+<td class="py-4 px-4 font-medium text-primary">KYC / Onboarding Friction</td>
+<td class="py-4 px-4 font-mono-sm">12</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="">1.8</span>
+</div>
+</td>
+<td class="py-4 px-4 font-mono-sm">46% <span class="text-error material-symbols-outlined text-[16px] align-middle">trending_up</span></td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 85%"></div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<td class="py-4 px-4 font-medium">App Stability / Crashes</td>
+<td class="py-4 px-4 font-mono-sm">8</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="">2.4</span>
+</div>
+</td>
+<td class="py-4 px-4 font-mono-sm">30% <span class="text-on-surface-variant material-symbols-outlined text-[16px] align-middle">trending_flat</span></td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 60%"></div>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<td class="py-4 px-4 font-medium">Customer Support Delays</td>
+<td class="py-4 px-4 font-mono-sm">4</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">3.1</span>
+</div>
+</td>
+<td class="py-4 px-4 font-mono-sm">15% <span class="text-on-surface-variant material-symbols-outlined text-[16px] align-middle">trending_down</span></td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 40%"></div>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<td class="py-4 px-4 font-medium">UI / Navigation Confusion</td>
+<td class="py-4 px-4 font-mono-sm">2</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="">3.8</span>
+</div>
+</td>
+<td class="py-4 px-4 font-mono-sm">9% <span class="text-on-surface-variant material-symbols-outlined text-[16px] align-middle">trending_flat</span></td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 15%"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Context Panel (KYC) -->
+<div class="w-96 bg-surface-container-lowest border border-outline-variant rounded-lg flex flex-col overflow-hidden shadow-sm">
+<div class="p-unit-md border-b border-outline-variant bg-surface-container flex justify-between items-center">
+<div>
+<h4 class="text-body-lg font-body-lg font-semibold text-primary">KYC / Onboarding Friction</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">12 snippets extracted</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-unit-md overflow-y-auto flex-1 flex flex-col gap-4">
+<!-- Snippet 1 -->
+<div class="p-4 border border-outline-variant rounded-DEFAULT bg-surface-bright relative">
+<div class="absolute top-0 right-0 p-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined text-[48px]">format_quote</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface relative z-10">
+                            "Been trying to verify my account for <span class="bg-error-container text-on-error-container px-1 rounded">3 days</span>. The document upload keeps failing with a <span class="font-mono-sm bg-surface-container px-1 rounded">500 error</span>."
+                        </p>
+<div class="mt-3 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Review #8492 • Rating: 1</span>
+<a class="text-primary hover:underline" href="#">View Source</a>
+</div>
+</div>
+<!-- Snippet 2 -->
+<div class="p-4 border border-outline-variant rounded-DEFAULT bg-surface-bright relative">
+<div class="absolute top-0 right-0 p-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined text-[48px]">format_quote</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface relative z-10">
+                            "The face scan step is completely broken. It just <span class="bg-tertiary-fixed text-on-tertiary-fixed px-1 rounded">spins endlessly</span>. Giving up."
+                        </p>
+<div class="mt-3 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Review #8311 • Rating: 2</span>
+<a class="text-primary hover:underline" href="#">View Source</a>
+</div>
+</div>
+<!-- Snippet 3 -->
+<div class="p-4 border border-outline-variant rounded-DEFAULT bg-surface-bright relative">
+<div class="absolute top-0 right-0 p-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined text-[48px]">format_quote</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface relative z-10">
+                            "Why do you need my passport <span class="font-medium underline decoration-error">twice</span>? The app rejected the first one after saying it was approved."
+                        </p>
+<div class="mt-3 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Review #8299 • Rating: 1</span>
+<a class="text-primary hover:underline" href="#">View Source</a>
+</div>
+</div>
+</div>
+<div class="p-unit-md border-t border-outline-variant bg-surface-container-lowest">
+<button class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT text-label-md font-label-md font-medium hover:bg-surface-tint transition-colors">
+                        Generate Action Report
+                    </button>
+</div>
+</div>
+</main>
+</div>
+
+
+</body></html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Run History - Review Pulse Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#eeefff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "error-container": "#ffdad6",
+                    "surface": "#faf8ff",
+                    "secondary": "#505f76",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-container": "#54647a",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-bright": "#faf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#191b23",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-high": "#e7e7f3",
+                    "inverse-surface": "#2e3039",
+                    "surface-variant": "#e1e2ed",
+                    "on-tertiary-container": "#ffede6",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#360f00",
+                    "tertiary-container": "#bc4800",
+                    "on-secondary": "#ffffff",
+                    "background": "#faf8ff",
+                    "outline-variant": "#c3c6d7",
+                    "surface-dim": "#d9d9e5",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "primary": "#004ac6",
+                    "surface-tint": "#0053db",
+                    "surface-container-highest": "#e1e2ed",
+                    "secondary-container": "#d0e1fb",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#ededf9",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-surface": "#191b23",
+                    "on-secondary-fixed": "#0b1c30",
+                    "outline": "#737686",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-container-low": "#f3f3fe",
+                    "tertiary": "#943700",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-surface-variant": "#434655",
+                    "on-secondary-fixed-variant": "#38485d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit-xl": "32px",
+                    "margin-mobile": "16px",
+                    "unit-md": "16px",
+                    "gutter": "24px",
+                    "unit-lg": "24px",
+                    "unit-sm": "8px",
+                    "unit-xs": "4px",
+                    "margin-desktop": "32px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "mono-sm": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "headline-md": ["Inter"],
+                    "display-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Geist"]
+            },
+            "fontSize": {
+                    "mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-sm": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-unit-lg px-unit-md z-50">
+<div class="mb-8 px-4">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-inverse-on-surface">Pulse Console</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">Enterprise Analytics</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+</li>
+
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/theme-explorer">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-label-md font-label-md">Theme Explorer</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/report-preview">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-label-md font-label-md">Report Preview</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-primary-fixed/10" href="/run-history">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-label-md font-label-md">Run History</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-secondary-container hover:text-on-surface transition-colors duration-200 ease-in-out" href="/settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+<span class="text-label-md font-label-md">Theme</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 flex-1 flex flex-col h-screen overflow-hidden bg-surface">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin-desktop py-unit-md sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h1 class="text-headline-md font-headline-md font-semibold text-primary dark:text-inverse-primary">Review Pulse Console</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-label-md font-label-md text-on-surface-variant">26 reviews (AS: 13, PS: 13)</div>
+<div class="text-label-md font-label-md text-on-surface bg-surface-container-high px-3 py-1 rounded-full">
+                    Weekly Review Pulse — 2026-W31 | 2026-05-19 → 2026-07-28
+                </div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-unit-xl">
+<div class="max-w-[1440px] mx-auto space-y-unit-lg">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="text-display-sm font-display-sm text-on-background">Run History</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Comprehensive log of past weekly review generation runs.</p>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Search runs..." type="text">
+</div>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer">
+<option>All Statuses</option>
+<option>Delivered</option>
+<option>Blocked</option>
+<option>Failed</option>
+</select>
+</div>
+</div>
+<!-- Data Table Component -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4">Week</th>
+<th class="py-3 px-4">Generated On</th>
+<th class="py-3 px-4 text-center">Reviews (AS/PS)</th>
+<th class="py-3 px-4 text-center">Themes</th>
+<th class="py-3 px-4">Groq Model</th>
+<th class="py-3 px-4 text-right">Word Count</th>
+<th class="py-3 px-4">Draft Status</th>
+<th class="py-3 px-4 text-center">Overall Status</th>
+<th class="py-3 px-4 text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-body-md font-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-4 px-4 font-mono-sm text-mono-sm font-semibold">2026-W31</td>
+<td class="py-4 px-4 text-on-surface-variant">2026-07-28 09:12 AM</td>
+<td class="py-4 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="text-primary font-medium">13</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-medium">13</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center font-mono-sm text-mono-sm">6</td>
+<td class="py-4 px-4 text-on-surface-variant text-xs">Llama3-8b-8192</td>
+<td class="py-4 px-4 text-right font-mono-sm text-mono-sm">1,245</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="">Ready</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-label-sm font-label-sm uppercase bg-primary-container/10 text-primary-container border border-primary-container/20">Delivered</span>
+</td>
+<td class="py-4 px-4 text-center">
+<a class="text-primary hover:text-primary-container transition-colors" href="#" title="View Document">
+<span class="material-symbols-outlined text-[20px]" data-icon="open_in_new">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-4 px-4 font-mono-sm text-mono-sm font-semibold">2026-W30</td>
+<td class="py-4 px-4 text-on-surface-variant">2026-07-21 10:05 AM</td>
+<td class="py-4 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="text-primary font-medium">11</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-medium">14</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center font-mono-sm text-mono-sm">5</td>
+<td class="py-4 px-4 text-on-surface-variant text-xs">Llama3-8b-8192</td>
+<td class="py-4 px-4 text-right font-mono-sm text-mono-sm">1,102</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="">Incomplete</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-label-sm font-label-sm uppercase bg-error/10 text-error border border-error/20">Blocked</span>
+</td>
+<td class="py-4 px-4 text-center">
+<button class="px-3 py-1 text-label-sm font-label-sm bg-surface border border-outline rounded text-on-surface hover:bg-surface-container-high transition-colors">Retry</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-4 px-4 font-mono-sm text-mono-sm font-semibold">2026-W29</td>
+<td class="py-4 px-4 text-on-surface-variant">2026-07-14 08:30 AM</td>
+<td class="py-4 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="text-primary font-medium">15</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-medium">15</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center font-mono-sm text-mono-sm">7</td>
+<td class="py-4 px-4 text-on-surface-variant text-xs">Llama3-8b-8192</td>
+<td class="py-4 px-4 text-right font-mono-sm text-mono-sm">1,450</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="">Archived</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-label-sm font-label-sm uppercase bg-primary-container/10 text-primary-container border border-primary-container/20">Delivered</span>
+</td>
+<td class="py-4 px-4 text-center">
+<a class="text-primary hover:text-primary-container transition-colors" href="#" title="View Document">
+<span class="material-symbols-outlined text-[20px]" data-icon="open_in_new">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-4 px-4 font-mono-sm text-mono-sm font-semibold">2026-W28</td>
+<td class="py-4 px-4 text-on-surface-variant">2026-07-07 09:00 AM</td>
+<td class="py-4 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="text-primary font-medium">0</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-medium">0</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center font-mono-sm text-mono-sm">0</td>
+<td class="py-4 px-4 text-on-surface-variant text-xs">Mixtral-8x7b-32768</td>
+<td class="py-4 px-4 text-right font-mono-sm text-mono-sm">0</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error animate-ping"></div>
+<span class="">Timeout</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-label-sm font-label-sm uppercase bg-error/10 text-error border border-error/20">Failed</span>
+</td>
+<td class="py-4 px-4 text-center">
+<button class="px-3 py-1 text-label-sm font-label-sm bg-primary text-on-primary rounded hover:bg-primary-container transition-colors">Re-run</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-outline-variant bg-surface-container-lowest px-4 py-3 flex items-center justify-between">
+<div class="text-label-sm font-label-sm text-on-surface-variant">
+                            Showing 1 to 4 of 52 runs
+                        </div>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-label-sm font-label-sm border border-outline-variant rounded text-outline-variant cursor-not-allowed">Previous</button>
+<button class="px-3 py-1 text-label-sm font-label-sm border border-outline-variant rounded text-on-surface hover:bg-surface-container-high transition-colors">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+
+</body></html>
