@@ -1,0 +1,32 @@
+# Real/private review dumps (keep samples tracked if under data/raw/*sample*)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/EXPORT_SCHEMA.md
+!data/raw/app_store_reviews.csv
+!data/raw/play_store_reviews.csv
+!data/raw/README.md
+
+data/processed/*
+!data/processed/.gitkeep
+
+output/*
+!output/.gitkeep
+!output/pulse-facts.sample.json
+
+# Secrets / local env — never commit Google OAuth or Groq keys
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+token.json
+client_secret*.json
+
+# Python / Node
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.DS_Store
+Thumbs.db

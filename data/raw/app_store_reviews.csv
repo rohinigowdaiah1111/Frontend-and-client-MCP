@@ -1,0 +1,16 @@
+review_id,rating,title,text,date,app_version,territory
+as-1001,2,Stuck on signup,Cannot finish onboarding after phone verify. Keeps spinning on the welcome screen.,2026-07-20,4.2.1,US
+as-1002,1,KYC rejected twice,Uploaded ID for KYC and got rejected without a clear reason. Support said try again.,2026-07-18,4.2.1,US
+as-1003,2,Payment failed,Card payment failed three times at checkout. Amount still pending on my bank.,2026-07-15,4.2.0,GB
+as-1004,3,Statements delayed,Monthly statements arrive late and PDF download fails on cellular.,2026-07-12,4.2.0,US
+as-1005,1,Cannot withdraw,Withdrawal to bank has been pending for five days with no status update.,2026-07-10,4.1.9,US
+as-1006,4,Onboarding smoother,New onboarding flow is clearer than before but still too many steps.,2026-07-05,4.2.1,CA
+as-1007,2,KYC selfie loop,KYC selfie step loops forever on iPhone 15. Had to reinstall.,2026-06-28,4.1.9,US
+as-1008,1,Charged twice,Payments charged me twice for one transfer. Need a refund path in-app.,2026-06-22,4.1.8,US
+as-1009,3,Statement layout,Statements are hard to read. Opening balance does not match prior closing.,2026-06-15,4.1.8,AU
+as-1010,2,Slow withdrawals,Withdrawals take longer than the advertised one business day.,2026-06-08,4.1.7,US
+as-1011,5,Love the speed,Once past onboarding the app is fast. Payments clear quickly for me.,2026-05-30,4.1.7,US
+as-1012,2,Verify identity again,Asked to redo KYC after updating my address. Frustrating repeat checks.,2026-05-22,4.1.6,GB
+as-1013,1,Onboarding crash,App crashes when skipping optional onboarding tips. Lost my progress.,2026-05-14,4.1.6,US
+as-1014,3,PDF statements,Can view statements in-app but email PDF never arrives.,2026-05-08,4.1.5,US
+as-1015,2,Withdrawal limit unclear,Hit an unexplained withdrawal limit with no FAQ entry explaining it.,2026-07-25,4.2.1,US

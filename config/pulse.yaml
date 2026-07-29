@@ -1,0 +1,67 @@
+# Weekly Review Pulse — pipeline configuration
+# Phase 0 foundations. Auth for Google lives in MCP host config, not here.
+
+window_weeks: 10 # must stay within 8–12
+
+themes:
+  max: 5
+  labels:
+    - onboarding
+    - kyc
+    - payments
+    - statements
+    - withdrawals
+
+pulse:
+  top_themes: 3
+  quotes: 3
+  actions: 3
+  max_words: 250
+  allow_sparse: true # permit <3 themes/quotes when data-poor (see edge-case.md)
+
+sources:
+  app_store:
+    path: data/raw/app_store_reviews.csv
+    enabled: true
+  play_store:
+    path: data/raw/play_store_reviews.csv
+    enabled: true
+
+delivery:
+  docs:
+    title_pattern: "Weekly Review Pulse — {iso_week}"
+  gmail:
+    to: "you@example.com" # replace with self or alias
+    subject_pattern: "Weekly Review Pulse — {iso_week}"
+    include_doc_link: true
+    include_full_body: true
+
+privacy:
+  strip_fields:
+    - username
+    - author
+    - email
+    - device_id
+  fail_closed: true # P-06: never write unredacted corpus on redactor failure
+
+# Phase 4b — Groq writes final report + email before Docs/Gmail MCP
+groq:
+  enabled: true
+  model: llama-3.3-70b-versatile
+  api_key_env: GROQ_API_KEY # never commit the key; read from environment only
+  temperature: 0.2
+  max_tokens: 700 # kept well under limits.tpm alongside the (compacted) prompt — see limits below
+  require_before_delivery: true # block Phases 5–6 unless Groq final copy succeeds
+  # Free-tier limits for llama-3.3-70b-versatile (per Groq console). Enforced
+  # client-side on a best-effort basis: max_tokens is clamped to fit tpm given
+  # the estimated prompt size, and a local usage log guards rpd/tpd so the
+  # pipeline fails closed instead of hammering the API once quota is gone.
+  limits:
+    rpm: 30
+    tpm: 1000
+    rpd: 12000
+    tpd: 100000
+
+runtime:
+  # agent-driven | scripted | both
+  mode: both

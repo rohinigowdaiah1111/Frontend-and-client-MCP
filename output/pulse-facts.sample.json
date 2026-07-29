@@ -1,0 +1,63 @@
+{
+  "week_of": "2026-07-28",
+  "window": { "start": "2026-05-19", "end": "2026-07-28" },
+  "stats": {
+    "total_reviews": 26,
+    "by_store": { "app_store": 13, "play_store": 13 }
+  },
+  "themes_top": [
+    {
+      "id": "payments",
+      "label": "payments",
+      "one_liner": "Failed charges and declines, especially evenings",
+      "metrics": { "count": 8, "avg_rating": 1.8 }
+    },
+    {
+      "id": "kyc",
+      "label": "kyc",
+      "one_liner": "Uploads rejected or stuck pending without clear status",
+      "metrics": { "count": 6, "avg_rating": 1.5 }
+    },
+    {
+      "id": "onboarding",
+      "label": "onboarding",
+      "one_liner": "Freezes and permission loops on first run",
+      "metrics": { "count": 5, "avg_rating": 2.2 }
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Card payment failed three times at checkout. Amount still pending on my bank.",
+      "theme_id": "payments",
+      "store": "app_store",
+      "rating": 2
+    },
+    {
+      "text": "KYC document upload fails with a generic error. No way to see which page was rejected.",
+      "theme_id": "kyc",
+      "store": "play_store",
+      "rating": 2
+    },
+    {
+      "text": "Cannot finish onboarding after phone verify. Keeps spinning on the welcome screen.",
+      "theme_id": "onboarding",
+      "store": "app_store",
+      "rating": 2
+    }
+  ],
+  "actions": [
+    {
+      "text": "Add payment decline reason codes and retry guidance on Android/iOS checkout.",
+      "theme_ids": ["payments"]
+    },
+    {
+      "text": "Surface KYC rejection page-level errors and pending ETA on the status screen.",
+      "theme_ids": ["kyc"]
+    },
+    {
+      "text": "Fix onboarding hang after phone verify; add timeout + recovery CTA.",
+      "theme_ids": ["onboarding"]
+    }
+  ],
+  "limitation_note": null
+}

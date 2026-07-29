@@ -1,0 +1,16 @@
+review_id,rating,title,text,date,app_version,language
+ps-2001,1,,Onboarding asks for the same permissions twice and then freezes on Android 14.,2026-07-22,4.2.1,en
+ps-2002,2,,KYC document upload fails with a generic error. No way to see which page was rejected.,2026-07-19,4.2.1,en
+ps-2003,1,,UPI payment declined even with sufficient balance. Happens every Friday evening.,2026-07-17,4.2.0,en
+ps-2004,3,,In-app statements miss international transfers from last month.,2026-07-11,4.2.0,en
+ps-2005,1,,Withdrawal cancelled automatically after 48 hours without notifying me.,2026-07-08,4.1.9,en
+ps-2006,4,,Payments finally work after the last update. Still wish for scheduled transfers.,2026-07-02,4.2.1,en
+ps-2007,2,,First-time onboarding tutorial cannot be dismissed. Blocks the home screen.,2026-06-25,4.1.9,en
+ps-2008,1,,Stuck in KYC pending for two weeks. App shows a blank status page.,2026-06-18,4.1.8,en
+ps-2009,2,,Card payments show success then reverse overnight. Scary for rent transfers.,2026-06-10,4.1.8,en
+ps-2010,3,,Statement CSV export is missing the fee column.,2026-06-03,4.1.7,en
+ps-2011,2,,Bank withdrawal needs overnight but ETA says instant. Misleading copy.,2026-05-27,4.1.7,en
+ps-2012,5,,Withdrawals hit my account same day this week. Great improvement.,2026-05-20,4.1.6,en
+ps-2013,2,,Onboarding language picker resets to English after every restart.,2026-05-12,4.1.6,en
+ps-2014,1,,Payment OTP screen times out too fast on slow networks.,2026-05-05,4.1.5,en
+ps-2015,3,,Statements look better in dark mode but dates still wrong for IST.,2026-07-24,4.2.1,en
